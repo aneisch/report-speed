@@ -1,1 +1,3 @@
 Comments in code. .html file goes in /var/www/, the rest do not matter, but paths will need to be updated.
+
+Add report-speed to crontab to execute at the frequency of your choosing. Mine is */1 (Every hour)
