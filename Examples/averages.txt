@@ -1,0 +1,3 @@
+Average Down: 36.7948550725
+Average Up: 2.76427536232
+Datapoints: 138
