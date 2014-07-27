@@ -1,0 +1,16 @@
+#install speedtest-cli from github or this wont work...
+
+speeds=$(speedtest-cli | grep -i -e Download: -e Upload: | sed -e 's/Download: //' -e 's/Upload: //' -e 's/Mbits\/s//' -e's/ //')
+#Next three lines remove crap
+good=$(echo $speeds | sed -e 's/ /,/')
+NOW=$(date +"%m-%d-%Y-%R")
+echo $NOW,$good >> ~/speed.csv
+
+#remove outdated file from webserver and copy over the updated one
+sudo rm /var/www/speed.csv
+sudo cp ~/speed.csv /var/www/
+#Copies updated csv file to the same directy, but changes to .txt so it displays better in browser
+sudo cp /var/www/speed.csv /var/www/speed.txt
+
+#Runs python code to generate graphs, calculate averages, and copy graphs and averages to webserver.
+python /home/pi/chart.py 
